@@ -1,6 +1,6 @@
 # createNewSite - WordPress Site Creator/Remover
 
-A bash script for automated creation and removal of local WordPress development sites with Apache and MySQL integration.
+A modular bash script for automated creation and removal of local WordPress development sites with Apache and MySQL integration.
 
 # local use only!!!
 
@@ -12,6 +12,9 @@ A bash script for automated creation and removal of local WordPress development 
 - 🔧 **Local hosts file management**
 - 🧹 **Cleanup on errors** to prevent partial installations
 - ❌ **Safe removal** with confirmation prompts
+- 📊 **Site information and status** commands
+- 🔍 **System status monitoring**
+- 🏗️ **Modular architecture** for easy maintenance and extension
 
 ## Requirements
 
@@ -81,12 +84,35 @@ sudo createNewSite mysite admin MyStrongPass123! admin@example.com mysite_db mys
 ### Removing a Site
 
 ```bash
-sudo createNewSite -rm <site-name> <db-name> <db-user> <root-password>
+sudo createNewSite -rm <site-name> <db-name> <db-user>
 ```
 
 **Example:**
 ```bash
-sudo createNewSite -rm mysite mysite_db mysite_user rootpass123
+sudo createNewSite -rm mysite mysite_db mysite_user
+```
+
+### Getting Site Information
+
+```bash
+sudo createNewSite -info <site-name>
+```
+
+**Example:**
+```bash
+sudo createNewSite -info mysite
+```
+
+### Listing All Sites
+
+```bash
+sudo createNewSite -list
+```
+
+### Checking System Status
+
+```bash
+sudo createNewSite -status
 ```
 
 ### Getting Help
@@ -127,7 +153,25 @@ sudo createNewSite --help
 - **Confirmation prompts** for destructive operations
 - **Error cleanup** removes partial installations on failure
 
-## File Structure
+## Project Structure
+
+The script is organized into modular components for better maintainability:
+
+```
+createNewSite/
+├── createNewSite.sh          # Main script
+├── config.sh                 # Configuration and constants
+├── utils.sh                  # Utility functions and helpers
+├── validation.sh             # Input validation functions
+├── database.sh               # Database operations
+├── apache.sh                 # Apache configuration and management
+├── wordpress.sh              # WordPress installation and management
+├── README.md                 # This documentation
+├── LICENSE                   # MIT License
+└── .gitignore               # Git ignore rules
+```
+
+### Site File Structure
 
 After installation, your site will be organized as:
 
@@ -254,7 +298,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Changelog
 
-### v1.0.0
+### v1.0.0 (Modular Version)
+- **Modular architecture** - Split monolithic script into focused modules
+- **Enhanced functionality** - Added site info, listing, and system status commands
+- **Improved error handling** - Better cleanup and error recovery
+- **Extended validation** - More comprehensive input validation
+- **Better documentation** - Updated README with new features
+- **Code organization** - Separated concerns into logical modules:
+  - `config.sh` - Configuration and constants
+  - `utils.sh` - Utility functions and helpers
+  - `validation.sh` - Input validation functions
+  - `database.sh` - Database operations
+  - `apache.sh` - Apache configuration and management
+  - `wordpress.sh` - WordPress installation and management
+
+### v1.0.0 (Original)
 - Initial release
 - Basic site creation and removal functionality
 - Security improvements and input validation
